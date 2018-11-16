@@ -17,9 +17,7 @@ const POST_HTML = async ({ buffer, config }) => {
   const { ENV } = config
   config.HTML_DIR = config.HTML_DIR || '/'
 
-  config.WEB_ROOT = ENV === 'production' && config.WEB_ROOT
-    ? config.WEB_ROOT
-    : '/'
+  config.WEB_ROOT = ENV === 'production' && config.WEB_ROOT ? config.WEB_ROOT : '/'
 
   try {
     if (is.empty(buffer)) {
@@ -48,12 +46,11 @@ const POST_HTML = async ({ buffer, config }) => {
       }
     }
     plugins.push(posthtmlExpressions({ locals }))
-    
-    const html = await posthtml(plugins).process(buffer/*, options */)
+
+    const html = await posthtml(plugins).process(buffer /*, options */)
     const minified = minify(html.html)
     return minified
-  }
-  catch(e) {
+  } catch (e) {
     throw e
   }
 }

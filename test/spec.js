@@ -12,7 +12,8 @@ const templateBuffer = fs.readFileSync(path.join(__dirname, 'includes', 'test.ht
 const includeBuffer = fs.readFileSync(path.join(__dirname, 'includes', 'include.html'))
 
 const expect = '<div class="c"><div id="id" class="class" data-wr="/">/testing</div></div>'
-const expectRooted = '<div class="c"><div id="id" class="class" data-wr="/root">/testing</div></div>'
+const expectRooted =
+  '<div class="c"><div id="id" class="class" data-wr="/root">/testing</div></div>'
 const includeDir = path.join(__dirname, 'includes')
 const expectIncluded = `<div class="tostring">${includeDir}</div>`
 
@@ -62,7 +63,11 @@ module.exports = [
     info: 'WEB_ROOT gets applied in production mode',
   },
   {
-    fn: async () => await POST_HTML({ buffer: '<div class="t">{{ HTML_DIR }}</div>', config: { ENV: 'development' } }),
+    fn: async () =>
+      await POST_HTML({
+        buffer: '<div class="t">{{ HTML_DIR }}</div>',
+        config: { ENV: 'development' },
+      }),
     expect: '<div class="t">/</div>',
     info: 'HTML_DIR fallback is "/"',
   },
@@ -105,5 +110,5 @@ module.exports = [
     fn: POST_HTML({ buffer: includeBuffer, config: { ...config.dev, HTML_DIR: includeDir } }),
     expect: str => expectIncluded,
     info: 'including html files works',
-  }
+  },
 ]
