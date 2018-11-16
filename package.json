@@ -1,0 +1,45 @@
+{
+  "name": "@mspg/transpile-pug",
+  "version": "0.0.1",
+  "description": "handles pug to html transform in @magic/stasis",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "t -p",
+    "test": "t",
+    "format": "f -w",
+    "format:check": "f",
+    "calls": "nyc report --reporter=text-lcov | calls",
+    "build": "NODE_ENV=production mspg build zip",
+    "publish": "NODE_ENV=production mspg build zip publish",
+    "connect": "mspg connect",
+    "dev": "mspg build watch serve"
+  },
+  "dependencies": {
+    "@magic/log": "github:magic/log",
+    "@magic/types": "github:magic/types",
+    "html-minifier": "^3.5.21",
+    "posthtml": "^0.11.3",
+    "posthtml-expressions": "1.1.0",
+    "posthtml-extend": "0.3.0",
+    "posthtml-include": "1.2.0"
+  },
+  "devDependencies": {
+    "@magic/test": "github:magic/test"
+  },
+  "author": "Wizards & Witches",
+  "license": "AGPL-3.0",
+  "contributors": [
+    {
+      "name": "jascha ehrenreich",
+      "github": "jaeh"
+    },
+    {
+      "name": "philipp tiefenbacher",
+      "github": "wizard23"
+    },
+    {
+      "name": "tom peak",
+      "github": "tompeak"
+    }
+  ]
+}
