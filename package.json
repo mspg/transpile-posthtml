@@ -24,7 +24,8 @@
     "posthtml-include": "1.2.0"
   },
   "devDependencies": {
-    "@magic/test": "github:magic/test"
+    "@magic/test": "github:magic/test",
+    "@mspg/core": "github:mspg/core"
   },
   "author": "Wizards & Witches",
   "license": "AGPL-3.0",
