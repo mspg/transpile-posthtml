@@ -27,6 +27,9 @@
     "@magic/test": "github:magic/test",
     "@mspg/core": "github:mspg/core"
   },
+  "files": [
+    "src"
+  ],
   "author": "Wizards & Witches",
   "license": "AGPL-3.0",
   "contributors": [
