@@ -11,11 +11,15 @@ const templateString = `<div class="c">
 const templateBuffer = fs.readFileSync(path.join(__dirname, 'includes', 'test.html'))
 const includeBuffer = fs.readFileSync(path.join(__dirname, 'includes', 'include.html'))
 
-const expect = '<div class="c"><div id="id" class="class" data-wr="/">/testing</div></div>'
-const expectRooted =
-  '<div class="c"><div id="id" class="class" data-wr="/root">/testing</div></div>'
+const expect = `<div class="c">
+  <div id="id" class="class" data-wr="/">/testing</div>
+</div>`
+const expectRooted = `<div class="c">
+  <div id="id" class="class" data-wr="/root">/testing</div>
+</div>`
+
 const includeDir = path.join(__dirname, 'includes')
-const expectIncluded = `<div class="tostring">${includeDir}</div>`
+const expectIncluded = `<div class="tostring">${includeDir}</div>\n`
 
 const config = {
   dev: {
@@ -83,7 +87,7 @@ module.exports = [
   },
   {
     fn: async () => await POST_HTML({ buffer: templateBuffer, config: config.dev }),
-    expect: `<div class="tostring">${config.dev.HTML_DIR}</div>`,
+    expect: `<div class="tostring">${config.dev.HTML_DIR}</div>\n`,
     info: 'Function can handle buffers',
   },
   {
@@ -108,7 +112,7 @@ module.exports = [
   },
   {
     fn: POST_HTML({ buffer: includeBuffer, config: { ...config.dev, HTML_DIR: includeDir } }),
-    expect: str => expectIncluded,
+    expect: expectIncluded,
     info: 'including html files works',
   },
 ]

@@ -6,7 +6,6 @@ const posthtml = require('posthtml')
 const posthtmlExtend = require('posthtml-extend')
 const posthtmlInclude = require('posthtml-include')
 const posthtmlExpressions = require('posthtml-expressions')
-const minify = require('./minify')
 
 const is = require('@magic/types')
 const log = require('@magic/log')
@@ -48,8 +47,7 @@ const POST_HTML = async ({ buffer, config }) => {
     plugins.push(posthtmlExpressions({ locals }))
 
     const html = await posthtml(plugins).process(buffer /*, options */)
-    const minified = minify(html.html)
-    return minified
+    return html.html
   } catch (e) {
     throw e
   }
