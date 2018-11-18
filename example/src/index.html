@@ -1,9 +1,21 @@
 <extends src="page.html">
-
   <block name="content">
+    <h2>extend</h2>
     <div>extending page.html works</div>
-    <div>locals work: {{ var }}</div>
+    
+    <h2>expressions</h2>
+    <div>locals: {{ var }}</div>
+    <div>condition: {{ 'test' === 'test' ? 'working' : 'broken' }}
+    <if condition="1 === 1">
+      <div>If condition works</div>
+    </if>
     <div>WEB_ROOT works: {{ WEB_ROOT }}</div>
+    
+    <h2>includes</h2>
     <include src="included.html"></include>
+    
+    <h2>mixins</h2>
+    <mixin name="mixinsWork"></mixin>
+    <mixin name="globalMixinsWork"></mixin>
   </block>
 </extends>
