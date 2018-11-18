@@ -1,7 +1,7 @@
 {
-  "name": "@mspg/transpile-pug",
+  "name": "@mspg/transpile-posthtml",
   "version": "0.0.1",
-  "description": "handles pug to html transform in @magic/stasis",
+  "description": "posthtml transpiler for @mspg",
   "main": "src/index.js",
   "scripts": {
     "start": "t -p",
