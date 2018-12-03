@@ -11,4 +11,7 @@ module.exports = {
   OUT_DIR: path.join(__dirname, 'example', 'public'),
   // web root of the github page
   WEB_ROOT: 'https://mspg.github.io/transpile-posthtml/',
+  LINT: {
+    HTML: true,
+  },
 }
