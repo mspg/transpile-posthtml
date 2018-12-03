@@ -7,6 +7,7 @@ const posthtmlExtend = require('posthtml-extend')
 const posthtmlInclude = require('posthtml-include')
 const posthtmlExpressions = require('posthtml-expressions')
 const posthtmlMixins = require('posthtml-mixins')
+const posthtmlHint = require('posthtml-hint')
 
 const is = require('@magic/types')
 const log = require('@magic/log')
@@ -49,6 +50,34 @@ const POST_HTML = async ({ buffer, config }) => {
     }
     plugins.push(posthtmlExpressions({ locals }))
 
+    if (typeof config.LINT !== 'undefined' && config.LINT.HTML) {
+      const optionsPath = path.join(process.cwd(), '.htmlhintrc')
+
+      if (fs.existsSync(optionsPath)) {
+        options = JSON.parse(fs.readFileSync(optionsPath))
+      } else {
+        options = {
+          'tagname-lowercase': true,
+          'attr-lowercase': true,
+          'attr-value-double-quotes': true,
+          'tag-pair': true,
+          'spec-char-escape': true,
+          'id-unique': true,
+          'src-not-empty': true,
+          'attr-no-duplication': true,
+          'title-require': true,
+          'head-script-disabled': true,
+          'attr-value-not-empty': true,
+          'alt-require': true,
+          'doctype-html5': true,
+          'doctype-first': true,
+          'space-tab-mixed-disabled': 'space',
+        }
+      }
+
+      plugins.push(posthtmlHint(options))
+    }
+
     const mixinFile = path.join(config.HTML_DIR, 'mixins.html')
     if (await exists(mixinFile)) {
       const mixinString = await readFile(mixinFile, 'utf8')
@@ -59,8 +88,8 @@ const POST_HTML = async ({ buffer, config }) => {
       const globalMixinString = await readFile(globalMixinFile, 'utf8')
       buffer = globalMixinString + buffer
     }
-  
-    const html = await posthtml(plugins).process(buffer /*, options */)
+
+    const html = await posthtml(plugins).process(buffer)
     return html.html
   } catch (e) {
     throw e
