@@ -23,21 +23,20 @@ const POST_HTML = async ({ buffer, config }) => {
 
   try {
     if (is.empty(buffer)) {
-      throw new Error('POST_HTML: Missing argument: { buffer } missing in first argument')
+      throw new Error('POST_HTML: expects { buffer } to be non-empty')
     }
 
     if (!is.string(buffer)) {
       if (is.buffer(buffer)) {
         buffer = buffer.toString()
       } else {
-        throw new Error('POST_HTML: buffer has to be a string or buffer')
+        throw new Error('POST_HTML: expects buffer to be a string or buffer')
       }
     }
 
     const plugins = [
       posthtmlExtend({ root: config.HTML_DIR }),
       posthtmlInclude({ root: config.HTML_DIR }),
-      posthtmlMixins(),
     ]
 
     const varFilePath = path.join(config.HTML_DIR, 'variables.js')
@@ -48,7 +47,9 @@ const POST_HTML = async ({ buffer, config }) => {
         ...require(varFilePath),
       }
     }
+
     plugins.push(posthtmlExpressions({ locals }))
+    plugins.push(posthtmlMixins())
 
     if (typeof config.LINT !== 'undefined' && config.LINT.HTML) {
       const optionsPath = path.join(process.cwd(), '.htmlhintrc')
@@ -92,7 +93,7 @@ const POST_HTML = async ({ buffer, config }) => {
     const html = await posthtml(plugins).process(buffer)
     return html.html
   } catch (e) {
-    throw e
+    return e
   }
 }
 

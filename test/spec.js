@@ -1,6 +1,6 @@
 const fs = require('fs')
 const path = require('path')
-const { is, tryCatch } = require('@magic/test')
+const { is } = require('@magic/test')
 const conf = require('../config')
 const POST_HTML = require('../src/index')
 
@@ -91,22 +91,22 @@ module.exports = [
     info: 'Function can handle buffers',
   },
   {
-    fn: tryCatch(POST_HTML, { buffer: {}, config: config.dev }),
+    fn: POST_HTML({ buffer: {}, config: config.dev }),
     expect: is.error,
     info: 'Passing empty objects errors',
   },
   {
-    fn: tryCatch(POST_HTML, { buffer: [], config: config.dev }),
+    fn: POST_HTML({ buffer: [], config: config.dev }),
     expect: is.error,
     info: 'Passing empty arrays errors',
   },
   {
-    fn: tryCatch(POST_HTML, { buffer: { toString: () => {} }, config: config.dev }),
+    fn: POST_HTML({ buffer: { toString: () => {} }, config: config.dev }),
     expect: is.error,
     info: 'Passing non buffer objects errors even if they have a toString function',
   },
   {
-    fn: tryCatch(POST_HTML, { config: config.dev }),
+    fn: POST_HTML({ config: config.dev }),
     expect: is.error,
     info: 'Calling POST_HTML without a buffer errors',
   },
