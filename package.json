@@ -17,7 +17,7 @@
   "dependencies": {
     "@magic/log": "github:magic/log",
     "@magic/types": "github:magic/types",
-    "html-minifier": "^3.5.21",
+    "html-minifier": "^4.0.0",
     "posthtml": "^0.11.3",
     "posthtml-expressions": "1.1.0",
     "posthtml-extend": "0.3.0",
