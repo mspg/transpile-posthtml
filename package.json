@@ -15,10 +15,10 @@
     "dev": "mspg build watch serve"
   },
   "dependencies": {
-    "@magic/log": "github:magic/log",
-    "@magic/types": "github:magic/types",
-    "html-minifier": "^3.5.21",
-    "posthtml": "^0.11.3",
+    "@magic/log": "0.1.0-cjs",
+    "@magic/types": "0.0.5",
+    "html-minifier": "4.0.0",
+    "posthtml": "0.11.4",
     "posthtml-expressions": "1.1.0",
     "posthtml-extend": "0.3.0",
     "posthtml-hint": "github:jaeh/posthtml-hint",
@@ -26,7 +26,7 @@
     "posthtml-mixins": "1.0.1"
   },
   "devDependencies": {
-    "@magic/test": "github:magic/test",
+    "@magic/test": "0.1.0-cjs",
     "@mspg/core": "github:mspg/core"
   },
   "files": [
