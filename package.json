@@ -15,7 +15,7 @@
     "dev": "mspg build watch serve"
   },
   "dependencies": {
-    "@magic/log": "0.1.0-cjs",
+    "@magic/log": "0.1.3",
     "@magic/types": "0.0.5",
     "html-minifier": "4.0.0",
     "posthtml": "0.11.4",
