@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@magic/log": "0.1.0-cjs",
-    "@magic/types": "0.0.5",
+    "@magic/types": "0.1.5",
     "html-minifier": "4.0.0",
     "posthtml": "0.11.4",
     "posthtml-expressions": "1.1.0",
