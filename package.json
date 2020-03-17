@@ -19,7 +19,7 @@
     "@magic/types": "0.0.5",
     "html-minifier": "4.0.0",
     "posthtml": "0.11.4",
-    "posthtml-expressions": "1.1.0",
+    "posthtml-expressions": "1.2.0",
     "posthtml-extend": "0.3.0",
     "posthtml-hint": "github:jaeh/posthtml-hint",
     "posthtml-include": "1.2.0",
