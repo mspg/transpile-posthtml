@@ -26,7 +26,7 @@
     "posthtml-mixins": "1.0.1"
   },
   "devDependencies": {
-    "@magic/test": "0.1.0-cjs",
+    "@magic/test": "0.1.49",
     "@mspg/core": "github:mspg/core"
   },
   "files": [
