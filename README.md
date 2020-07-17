@@ -19,9 +19,9 @@ First set up a [mspg](https://github.com/mspg/core) project.
 
 then, in src/config.js
 ```javascript
-  const HTML = require('@mspg/transpile-posthtml')
+  import HTML from '@mspg/transpile-posthtml'
 
-  module.exports = {
+  export default {
     TRANSPILERS: {
       HTML,
     },
