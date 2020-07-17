@@ -1,7 +1,9 @@
-const path = require('path')
-const HTML = require('./src')
+import path from 'path'
+import HTML from './src/index.js'
 
-module.exports = {
+const __dirname = path.dirname(new URL(import.meta.url).pathname);
+
+export default {
   TRANSPILERS: {
     HTML,
   },

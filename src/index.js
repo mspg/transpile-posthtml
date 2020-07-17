@@ -1,21 +1,20 @@
-const fs = require('fs')
-const path = require('path')
-const util = require('util')
+import fs from '@magic/fs'
+import path from 'path'
 
-const posthtml = require('posthtml')
-const posthtmlExtend = require('posthtml-extend')
-const posthtmlInclude = require('posthtml-include')
-const posthtmlExpressions = require('posthtml-expressions')
-const posthtmlMixins = require('posthtml-mixins')
-const posthtmlHint = require('posthtml-hint')
+import posthtml from 'posthtml'
+import posthtmlExtend from 'posthtml-extend'
+import posthtmlInclude from 'posthtml-include'
+import posthtmlExpressions from 'posthtml-expressions'
+import posthtmlMixins from 'posthtml-mixins'
+import posthtmlHint from 'posthtml-hint'
 
-const is = require('@magic/types')
-const log = require('@magic/log')
+import is from '@magic/types'
 
-const exists = util.promisify(fs.exists)
-const readFile = util.promisify(fs.readFile)
+const __dirname = path.dirname(new URL(import.meta.url).pathname);
 
-const POST_HTML = async ({ buffer, config }) => {
+export const POST_HTML = async args => {
+  const { buffer: buf, config } = args
+  let buffer = await buf
   const { ENV } = config
   config.HTML_DIR = config.HTML_DIR || '/'
 
@@ -41,10 +40,11 @@ const POST_HTML = async ({ buffer, config }) => {
 
     const varFilePath = path.join(config.HTML_DIR, 'variables.js')
     let locals = config
-    if (await exists(varFilePath)) {
+    if (await fs.exists(varFilePath)) {
+      const { default: fileModule } = await import(varFilePath)
       locals = {
         ...locals,
-        ...require(varFilePath),
+        ...fileModule,
       }
     }
 
@@ -54,8 +54,10 @@ const POST_HTML = async ({ buffer, config }) => {
     if (typeof config.LINT !== 'undefined' && config.LINT.HTML) {
       const optionsPath = path.join(process.cwd(), '.htmlhintrc')
 
-      if (fs.existsSync(optionsPath)) {
-        options = JSON.parse(fs.readFileSync(optionsPath))
+      let options
+
+      if (await fs.exists(optionsPath)) {
+        options = JSON.parse(await fs.readFile(optionsPath))
       } else {
         options = {
           'tagname-lowercase': true,
@@ -71,7 +73,7 @@ const POST_HTML = async ({ buffer, config }) => {
           'attr-value-not-empty': true,
           'alt-require': true,
           'doctype-html5': true,
-          'doctype-first': true,
+          // 'doctype-first': true,
           'space-tab-mixed-disabled': 'space',
         }
       }
@@ -80,13 +82,13 @@ const POST_HTML = async ({ buffer, config }) => {
     }
 
     const mixinFile = path.join(config.HTML_DIR, 'mixins.html')
-    if (await exists(mixinFile)) {
-      const mixinString = await readFile(mixinFile, 'utf8')
+    if (await fs.exists(mixinFile)) {
+      const mixinString = await fs.readFile(mixinFile, 'utf8')
       buffer = mixinString + buffer
     }
     const globalMixinFile = path.join(__dirname, 'mixins.html')
-    if (await exists(globalMixinFile)) {
-      const globalMixinString = await readFile(globalMixinFile, 'utf8')
+    if (await fs.exists(globalMixinFile)) {
+      const globalMixinString = await fs.readFile(globalMixinFile, 'utf8')
       buffer = globalMixinString + buffer
     }
 
@@ -97,4 +99,4 @@ const POST_HTML = async ({ buffer, config }) => {
   }
 }
 
-module.exports = POST_HTML
+export default POST_HTML
