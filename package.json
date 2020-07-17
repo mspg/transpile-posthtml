@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "posthtml transpiler for @mspg",
   "main": "src/index.js",
+  "type": "module",
   "scripts": {
     "start": "t -p",
     "test": "t",
@@ -15,19 +16,20 @@
     "dev": "mspg build watch serve"
   },
   "dependencies": {
-    "@magic/log": "0.1.0-cjs",
-    "@magic/types": "0.0.5",
+    "@magic/fs": "0.0.6",
+    "@magic/log": "0.1.5",
+    "@magic/types": "0.1.13",
     "html-minifier": "4.0.0",
-    "posthtml": "0.11.4",
-    "posthtml-expressions": "1.1.0",
+    "posthtml": "0.13.1",
+    "posthtml-expressions": "1.4.5",
     "posthtml-extend": "0.3.0",
-    "posthtml-hint": "github:jaeh/posthtml-hint",
-    "posthtml-include": "1.2.0",
+    "posthtml-hint": "github:mspg/posthtml-hint",
+    "posthtml-include": "1.4.3",
     "posthtml-mixins": "1.0.1"
   },
   "devDependencies": {
-    "@magic/test": "0.1.0-cjs",
-    "@mspg/core": "github:mspg/core"
+    "@magic/test": "0.1.52",
+    "@mspg/core": "github:mspg/core#mjs"
   },
   "files": [
     "src"
