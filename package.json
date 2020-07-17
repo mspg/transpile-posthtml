@@ -4,11 +4,15 @@
   "description": "posthtml transpiler for @mspg",
   "main": "src/index.js",
   "type": "module",
+  "engines": {
+    "node": ">=14.2.0"
+  },
+  "engineStrict": true,
   "scripts": {
     "start": "t -p",
     "test": "t",
-    "format": "f -w",
-    "format:check": "f",
+    "format": "f -w -f js json",
+    "format:check": "f -f js json",
     "calls": "nyc report --reporter=text-lcov | calls",
     "build": "NODE_ENV=production mspg build zip",
     "publish": "NODE_ENV=production mspg build zip publish",
@@ -23,7 +27,7 @@
     "posthtml": "0.13.1",
     "posthtml-expressions": "1.4.5",
     "posthtml-extend": "0.3.0",
-    "posthtml-hint": "github:mspg/posthtml-hint",
+    "posthtml-hint": "github:mspg/posthtml-hint#mjs",
     "posthtml-include": "1.4.3",
     "posthtml-mixins": "1.0.1"
   },
