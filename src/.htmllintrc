@@ -12,6 +12,5 @@
   "attr-value-not-empty": true,
   "alt-require": true,
   "doctype-html5": true,
-  "doctype-first": true,
   "space-tab-mixed-disabled": "space"
 }
