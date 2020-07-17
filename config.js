@@ -1,11 +1,11 @@
 import path from 'path'
-import HTML from './src/index.js'
+import html from './src/index.js'
 
 const __dirname = path.dirname(new URL(import.meta.url).pathname);
 
 export default {
   TRANSPILERS: {
-    HTML,
+    html,
   },
   // files get loaded from example/src and example/includes
   CWD: path.join(__dirname, 'example'),
