@@ -1,8 +1,8 @@
-const { is } = require('@magic/test')
+import { is } from '@magic/test'
 
-const vars = require('../../example/includes/html/variables.js')
+import vars from '../../example/includes/html/variables.js'
 
-module.exports = [
+export default [
   { fn: vars, expect: is.object, info: 'vars are an object' },
   { fn: vars.var, expect: is.string, info: 'vars.var is a string' },
 ]

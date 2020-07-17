@@ -1,8 +1,9 @@
-const fs = require('fs')
-const path = require('path')
-const { is } = require('@magic/test')
-const conf = require('../config')
-const POST_HTML = require('../src/index')
+import fs from 'fs'
+import path from 'path'
+import { is } from '@magic/test'
+import POST_HTML from '../src/index.js'
+
+const __dirname = path.dirname(new URL(import.meta.url).pathname);
 
 const templateString = `<div class="c">
   <div id="id" class="class" data-wr="{{ WEB_ROOT }}">{{ HTML_DIR }}</div>
@@ -44,7 +45,7 @@ const config = {
   },
 }
 
-module.exports = [
+export default [
   { fn: () => POST_HTML, expect: is.fn, info: 'POST_HTML is a function' },
   {
     fn: async () => await POST_HTML({ buffer: templateString, config: config.dev }),
