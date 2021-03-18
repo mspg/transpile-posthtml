@@ -3,7 +3,7 @@ import path from 'path'
 import { is } from '@magic/test'
 import POST_HTML from '../src/index.js'
 
-const __dirname = path.dirname(new URL(import.meta.url).pathname);
+const __dirname = path.dirname(new URL(import.meta.url).pathname)
 
 const templateString = `<div class="c">
   <div id="id" class="class" data-wr="{{ WEB_ROOT }}">{{ HTML_DIR }}</div>

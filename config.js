@@ -1,7 +1,7 @@
 import path from 'path'
 import html from './src/index.js'
 
-const __dirname = path.dirname(new URL(import.meta.url).pathname);
+const __dirname = path.dirname(new URL(import.meta.url).pathname)
 
 export default {
   TRANSPILERS: {

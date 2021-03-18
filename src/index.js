@@ -10,7 +10,7 @@ import posthtmlHint from 'posthtml-hint'
 
 import is from '@magic/types'
 
-const __dirname = path.dirname(new URL(import.meta.url).pathname);
+const __dirname = path.dirname(new URL(import.meta.url).pathname)
 
 export const POST_HTML = async args => {
   const { buffer: buf, config } = args
