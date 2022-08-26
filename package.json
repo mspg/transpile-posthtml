@@ -20,19 +20,19 @@
     "dev": "mspg build watch serve"
   },
   "dependencies": {
-    "@magic/fs": "0.0.22",
-    "@magic/log": "0.1.13",
-    "@magic/types": "0.1.18",
+    "@magic/fs": "0.0.27",
+    "@magic/log": "0.1.17",
+    "@magic/types": "0.1.22",
     "html-minifier": "4.0.0",
     "posthtml": "0.16.6",
     "posthtml-expressions": "1.9.0",
-    "posthtml-extend": "0.6.2",
+    "posthtml-extend": "0.6.3",
     "posthtml-hint": "github:mspg/posthtml-hint#mjs",
-    "posthtml-include": "1.7.2",
+    "posthtml-include": "1.7.4",
     "posthtml-mixins": "1.0.1"
   },
   "devDependencies": {
-    "@magic/test": "0.2.7",
+    "@magic/test": "0.2.14",
     "@mspg/core": "github:mspg/core#mjs"
   },
   "files": [
